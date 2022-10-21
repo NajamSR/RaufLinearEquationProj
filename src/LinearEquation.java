@@ -5,6 +5,10 @@ public class LinearEquation {
     private int x2;
     private int y2;
 
+    private int deltaX;
+
+    private int deltaY;
+
 
     /* Creates a LinearEquation object */
 /* PRECONDITION: x1 and x2 are NOT equal (client programs are responsible for ensuring
@@ -15,6 +19,8 @@ public class LinearEquation {
             this.x2 = x2;
             this.y1 = y1;
             this.y2 = y2;
+            deltaX = x2 - x1;
+            deltaY = y2 - y1;
         }
     }
 
@@ -22,7 +28,7 @@ public class LinearEquation {
     /* Calculates and returns distance between (x1, y1) and (x2, y2), rounded to
       the nearest hundredth */
     public double distance() {
-        return (roundedToHundredth(Math.sqrt(((double)x2 - x1)*((double)x2 - x1) + ((double)y2 - y1)*((double)y2 - y1))));
+        return (roundedToHundredth(Math.sqrt(((double)deltaX)*((double)deltaX) + ((double)deltaY)*((double)deltaY))));
     }
 
 
@@ -30,6 +36,7 @@ public class LinearEquation {
     /* Calculates and returns the y-intercept of the line between (x1, y1) and
        (x2, y2), rounded to the nearest hundredth */
     public double yIntercept() {
+
         return (y1 - slope() * x1);
     }
 
@@ -38,7 +45,8 @@ public class LinearEquation {
     /* Calculates and returns the slope of the line between (x1, y1) and
        (x2, y2), rounded to the nearest hundredth */
     public double slope() {
-        return (roundedToHundredth(((double)y2 - y1) / ((double)x2 - x1)));
+
+        return (roundedToHundredth((double) (deltaY) / deltaX));
     }
 
 
@@ -68,7 +76,31 @@ public class LinearEquation {
                subtraction!
      */
     public String equation() {
-        return ("y = " + slope() + "x + " + yIntercept());
+        String line = "y = ";
+
+        if (slope() == 1) {
+            line += "x";
+        } else if (slope() == -1) {
+            line += "-x";
+        } else if (slope() == 0) {
+            line += "";
+        } else if (slope() % 1 == 0) {
+            line += slope() + "x";
+        } else if (deltaX < 0) {
+            line += (deltaY * -1) + "/" + (deltaX * -1) + "x";
+        } else {
+            line += deltaY + "/" + deltaX + "x";
+        }
+
+        if (yIntercept() == 0 && slope() == 0) {
+            line += "0";
+        } else if (yIntercept() < 0) {
+            line += " - " + Math.abs(yIntercept());
+        } else {
+            line += " + " + yIntercept();
+        }
+
+        return line;
     }
 
 
@@ -91,6 +123,7 @@ public class LinearEquation {
         HINT:  the Math.round method can help with this!
      */
     public double roundedToHundredth(double toRound) {
+
         return (Math.round(toRound * 100) / 100.0);
     }
 
