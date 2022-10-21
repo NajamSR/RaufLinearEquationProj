@@ -37,7 +37,7 @@ public class LinearEquation {
        (x2, y2), rounded to the nearest hundredth */
     public double yIntercept() {
 
-        return (y1 - slope() * x1);
+        return roundedToHundredth(y1 - slope() * x1);
     }
 
 
