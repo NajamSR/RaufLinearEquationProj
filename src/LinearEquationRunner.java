@@ -15,8 +15,8 @@ public class LinearEquationRunner {
         int ytwo = Integer.parseInt(coord2.substring(coord2.indexOf(" ") + 1, coord2.indexOf(")")));
 
         if (xone == xtwo) {
-            System.out.println("These points are on a vertical line: x = " + xone);
-            
+            System.out.println();
+            System.out.println("These points are on a vertical line: x = " + xone);  
         } else {
             LinearEquation equation = new LinearEquation(xone, yone, xtwo, ytwo);
             System.out.println();
