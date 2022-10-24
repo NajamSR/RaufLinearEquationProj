@@ -18,13 +18,13 @@ public class LinearEquationRunner {
             System.out.println();
             System.out.println("These points are on a vertical line: x = " + xone);  
         } else {
-            LinearEquation equation = new LinearEquation(xone, yone, xtwo, ytwo);
+            LinearEquation obj = new LinearEquation(xone, yone, xtwo, ytwo);
             System.out.println();
-            System.out.println(equation.lineInfo());
+            System.out.println(obj.lineInfo());
 
             System.out.println("\nEnter a value for x: ");
             double x = scan.nextDouble();
-            System.out.println("The point on the line is " + equation.coordinateForX(x));
+            System.out.println("The point on the line is " + obj.coordinateForX(x));
         }
     }
 }
